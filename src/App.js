@@ -144,11 +144,7 @@ export default function App() {
         <div>
             <button type="button">Close Doors</button>
             {/* <button onClick={localStorage.clear();} */}
-              return (
-    <button onClick={this.sayHello}>
-      Click me!
-    </button>
-  );
+            
         </div>
       </div>
 
