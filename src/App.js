@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Door from './components/Door.js';
 import Header from './Header.js'
 import {
   //this style of import 
@@ -14,56 +15,31 @@ import {
 import About from './components/About.js'
 
 var data = [
-  { number: 1, image: "https://placekitten.com/g/100/100" },
-  { number: 2, image: "https://placekitten.com/g/100/100" },
-  { number: 3, image: "https://placekitten.com/g/100/100" },
-  { number: 4, image: "https://placekitten.com/g/100/100" },
-  { number: 5, image: "https://placekitten.com/g/100/100" },
-  { number: 6, image: "https://placekitten.com/g/100/100" },
-  { number: 7, image: "https://placekitten.com/g/100/100" },
-  { number: 8, image: "https://placekitten.com/g/100/100" },
-  { number: 9, image: "https://placekitten.com/g/100/100" },
-  { number: 10, image: "https://placekitten.com/g/100/100" }, 
-  { number: 11, image: "https://placekitten.com/g/100/100" },
-  { number: 12, image: "https://placekitten.com/g/100/100" },
-  { number: 13, image: "https://placekitten.com/g/100/100" },
-  { number: 14, image: "https://placekitten.com/g/100/100" },
-  { number: 15, image: "https://placekitten.com/g/100/100" },
-  { number: 16, image: "https://placekitten.com/g/100/100" },
-  { number: 17, image: "https://placekitten.com/g/100/100" },
-  { number: 18, image: "https://placekitten.com/g/100/100" },
-  { number: 19, image: "https://placekitten.com/g/100/100" },
-  { number: 20, image: "https://placekitten.com/g/100/100" },
-  { number: 21, image: "https://placekitten.com/g/100/100" },
-  { number: 22, image: "https://placekitten.com/g/100/100" },
-  { number: 23, image: "https://placekitten.com/g/100/100" },
+  { number: 1, image: '../assets/img/camel.jpg'},
+  { number: 2, image: '../assets/img/camel.jpg'},
+  { number: 3, image: '../assets/img/camel.jpg'},
+  { number: 4, image: '../assets/img/camel.jpg'},
+  { number: 5, image: '../assets/img/camel.jpg'},
+  { number: 6, image: '../assets/img/camel.jpg'},
+  { number: 7, image: '../assets/img/camel.jpg'},
+  { number: 8, image: '../assets/img/camel.jpg'},
+  { number: 9, image: '../assets/img/camel.jpg'},
+  { number: 10, image: '../assets/img/camel.jpg'}, 
+  { number: 11, image: '../assets/img/camel.jpg'},
+  { number: 12, image: '../assets/img/camel.jpg'},
+  { number: 13, image: '../assets/img/camel.jpg'},
+  { number: 14, image: '../assets/img/camel.jpg'},
+  { number: 15, image: '../assets/img/camel.jpg'},
+  { number: 16, image: '../assets/img/camel.jpg'},
+  { number: 17, image: '../assets/img/camel.jpg'},
+  { number: 18, image: '../assets/img/camel.jpg'},
+  { number: 19, image: '../assets/img/camel.jpg'},
+  { number: 20, image: '../assets/img/camel.jpg'},
+  { number: 21, image: '../assets/img/camel.jpg'},
+  { number: 22, image: '../assets/img/camel.jpg'},
+  { number: 23, image: "https://placekitten.com/g/200/100" },
   { number: 24, image: "https://placekitten.com/g/100/100" }
 ]
-
-// TODO: This should be a component:
-const Door = (obj) => {
-  //curly brackets inside the useState are a JSON object
-  const [doorStyle, setDoorStyle] = React.useState({ backgroundImage: "url('https://fastly.syfy.com/sites/syfy/files/2018/08/pikachu_pokemon_snap.jpeg')" });
-  const number = obj.number;
-  const image = obj.image;
-
-  const doorClicked = () => {
-    //new Date is a built in method in javascript
-    const currentDate = new Date();
-    if (currentDate.getDate() >= number) {
-        setDoorStyle({backgroundImage: "url(" + image + ")"})
-    } else {
-
-    }
-  }
-  
-  // const handleChange = (event, newValue) => {
-  //   setValue(newValue);
-  // };
-
-  return <div className="Door" style={doorStyle} onClick={doorClicked}>{number}</div>;
-}
-
 
 // props is an object
 // the field names in the object are the attribute names
@@ -133,15 +109,23 @@ function Contact() {
 
 
 export default function App() {
-  
+  console.log(data);
   Door(1) // returns "(1)"
 
   var Doors = data.map(Door);
   return (
-    <div>
+    <div class="wrapper">
       <Title text="Advent Calendar" color="purple" />
       <Title text="Countdown to Christmas!" color="orange" />
-      {Doors}
+        <div class="calendar-container">
+          {Doors}
+        </div>
+        {/* {} are used for javascript objects  */}
+        {/* but also {} are used to swap from html (JSX) mode to javascript mode when using React/JSX */}
+        <div class= "last-door">
+          {/* true is inside {} so that it isn't seen as a string */}
+          <Door number="25" image="https://placekitten.com/g/100/100" itsChristmas = {true}/>
+        </div>
     </div>
   )
 }
