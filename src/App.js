@@ -16,13 +16,13 @@ import About from './components/About.js'
 
 var data = [
   { number: 1, image: '../assets/img/camel.jpg'},
-  { number: 2, image: '../assets/img/camel.jpg'},
-  { number: 3, image: '../assets/img/camel.jpg'},
-  { number: 4, image: '../assets/img/camel.jpg'},
-  { number: 5, image: '../assets/img/camel.jpg'},
-  { number: 6, image: '../assets/img/camel.jpg'},
-  { number: 7, image: '../assets/img/camel.jpg'},
-  { number: 8, image: '../assets/img/camel.jpg'},
+  { number: 2, image: '../assets/img/duck.png'},
+  { number: 3, image: '../assets/img/jigglypuff.png'},
+  { number: 4, image: '../assets/img/pikachu.png'},
+  { number: 5, image: '../assets/img/reindeer.png'},
+  { number: 6, image: '../assets/img/sloth.png'},
+  { number: 7, image: '../assets/img/windmill.png'},
+  { number: 8, image: '../assets/img/windmill-logo.jpg'},
   { number: 9, image: '../assets/img/camel.jpg'},
   { number: 10, image: '../assets/img/camel.jpg'}, 
   { number: 11, image: '../assets/img/camel.jpg'},
@@ -37,7 +37,7 @@ var data = [
   { number: 20, image: '../assets/img/camel.jpg'},
   { number: 21, image: '../assets/img/camel.jpg'},
   { number: 22, image: '../assets/img/camel.jpg'},
-  { number: 23, image: "https://placekitten.com/g/200/100" },
+  { number: 23, image: "https://placekitten.com/g/101/100" },
   { number: 24, image: "https://placekitten.com/g/100/100" }
 ]
 
@@ -56,6 +56,16 @@ function Title(props) {
   )
 }
 
+function Subheading(props) {
+  var cssStyles = {
+    color: props.color
+  };
+  return (
+    // {} braces are a way of inserting javascript into the middle of the html
+    <h2 style={cssStyles}>{props.text}</h2>
+  )
+}
+
 
 
 function OriginalApp() {
@@ -65,7 +75,7 @@ function OriginalApp() {
     <Router>
       {/* anything with a lowercase first letter is an "element" (an html tag) */}
       <div>
-        <Title text="Advent Calendar" color="purple" />
+        {/* <Title text="Advent Calendar" color="purple" /> */}
         <nav>
           <ol>
             <li>
@@ -115,17 +125,33 @@ export default function App() {
   var Doors = data.map(Door);
   return (
     <div class="wrapper">
-      <Title text="Advent Calendar" color="purple" />
-      <Title text="Countdown to Christmas!" color="orange" />
-        <div class="calendar-container">
-          {Doors}
-        </div>
-        {/* {} are used for javascript objects  */}
-        {/* but also {} are used to swap from html (JSX) mode to javascript mode when using React/JSX */}
+      <span class = "titles">
+        <Title text="Advent Calendar " color="green" />
+        <span class = "subheading">
+          <Subheading text="Countdown to Christmas!" color="white" />
+        </span>
+      </span>
+      <div class="calendar-container">
+        {Doors}
+      </div>
+      {/* {} are used for javascript objects  */}
+      {/* but also {} are used to swap from html (JSX) mode to javascript mode when using React/JSX */}
+      <div class = "last-door-wrapper">
         <div class= "last-door">
           {/* true is inside {} so that it isn't seen as a string */}
-          <Door number="25" image="https://placekitten.com/g/100/100" itsChristmas = {true}/>
+            <Door number="25" image='../assets/img/camel.jpg' itsChristmas = {true}/>
         </div>
-    </div>
+        <div>
+            <button type="button">Close Doors</button>
+            {/* <button onClick={localStorage.clear();} */}
+              return (
+    <button onClick={this.sayHello}>
+      Click me!
+    </button>
+  );
+        </div>
+      </div>
+
+  </div>
   )
 }

@@ -12,9 +12,13 @@ function Door(props) {
 	//if the door is not open then savedDoorState gets the value undefined which is falsey but we are using strict === comparison to the string so it doesn't matter what it is as long as it isn't open
 	const [doorOpen, setDoorOpen] = React.useState(savedDoorState === 'open');
 
-	let doorStyle = { backgroundImage: "url('https://fastly.syfy.com/sites/syfy/files/2018/08/pikachu_pokemon_snap.jpeg')" };
+	let doorStyle = { backgroundImage: "url('../assets/img/holly.png')" };
 
 	console.log(props);
+
+	// if ('Door'+number === 25) {
+	// 	doorStyle = { backgroundImage: "url('../assets/img/holly-25.png')" };
+	// }
 
 	const doorClicked = () => {
 	    //new Date is a built in method in javascript
