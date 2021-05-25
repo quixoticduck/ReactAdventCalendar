@@ -2,7 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Door from './components/Door.js';
-import Header from './Header.js'
+import Header from './Header.js';
+import FunctionCloseDoors from './components/FunctionCloseDoors.js'
 import {
   //this style of import 
   BrowserRouter as Router,
@@ -68,45 +69,45 @@ function Subheading(props) {
 
 
 
-function OriginalApp() {
-  var message = "Hello world"
-  return (
-    // anything with an uppercase first letter is a "component"
-    <Router>
-      {/* anything with a lowercase first letter is an "element" (an html tag) */}
-      <div>
-        {/* <Title text="Advent Calendar" color="purple" /> */}
-        <nav>
-          <ol>
-            <li>
-              <Link to="/">House</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
-          </ol>
-        </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/contact">
-            <Contact />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
-}
+// function OriginalApp() {
+//   var message = "Hello world"
+//   return (
+//     // anything with an uppercase first letter is a "component"
+//     <Router>
+//       {/* anything with a lowercase first letter is an "element" (an html tag) */}
+//       <div>
+//         {/* <Title text="Advent Calendar" color="purple" /> */}
+//         <nav>
+//           <ol>
+//             <li>
+//               <Link to="/">House</Link>
+//             </li>
+//             <li>
+//               <Link to="/about">About</Link>
+//             </li>
+//             <li>
+//               <Link to="/contact">Contact</Link>
+//             </li>
+//           </ol>
+//         </nav>
+// 
+//         {/* A <Switch> looks through its children <Route>s and
+//             renders the first one that matches the current URL. */}
+//         <Switch>
+//           <Route path="/about">
+//             <About />
+//           </Route>
+//           <Route path="/contact">
+//             <Contact />
+//           </Route>
+//           <Route path="/">
+//             <Home />
+//           </Route>
+//         </Switch>
+//       </div>
+//     </Router>
+//   );
+// }
 
 function Home() {
   return <h2>Home</h2>;
@@ -126,7 +127,7 @@ export default function App() {
   return (
     <div class="wrapper">
       <span class = "titles">
-        <Title text="Advent Calendar " color="green" />
+        <Title text="Advent Calendar " color="white" />
         <span class = "subheading">
           <Subheading text="Countdown to Christmas!" color="white" />
         </span>
@@ -142,9 +143,7 @@ export default function App() {
             <Door number="25" image='../assets/img/camel.jpg' itsChristmas = {true}/>
         </div>
         <div>
-            <button type="button">Close Doors</button>
-            {/* <button onClick={localStorage.clear();} */}
-            
+            <FunctionCloseDoors/>
         </div>
       </div>
 
