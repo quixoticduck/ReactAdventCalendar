@@ -1,4 +1,5 @@
 import React from 'react';
+import Holly from '../img/holly.png';
 
 function Door(props) {
 	// TODO: This should be a component:
@@ -12,7 +13,7 @@ function Door(props) {
 	//if the door is not open then savedDoorState gets the value undefined which is falsey but we are using strict === comparison to the string so it doesn't matter what it is as long as it isn't open
 	const [doorOpen, setDoorOpen] = React.useState(savedDoorState === 'open');
 
-	let doorStyle = { backgroundImage: "url('../assets/img/holly.png')" };
+	let doorStyle = { backgroundImage: "url(" + Holly + ")" };
 
 	console.log(props);
 

@@ -3,7 +3,16 @@ import logo from './logo.svg';
 import './App.css';
 import Door from './components/Door.js';
 import Header from './Header.js';
-import FunctionCloseDoors from './components/FunctionCloseDoors.js'
+import FunctionCloseDoors from './components/FunctionCloseDoors.js';
+import Holly from './img/holly.png';
+import Camel from './img/camel.jpg';
+import Duck from './img/duck.png';
+import Jigglypuff from './img/jigglypuff.png';
+import Pikachu from './img/pikachu.png';
+import Reindeer from './img/reindeer.png';
+import Sloth from './img/sloth.png';
+import Windmill from './img/windmill.png';
+import WindmillLogo from './img/windmill-logo.jpg'
 import {
   //this style of import 
   BrowserRouter as Router,
@@ -16,14 +25,14 @@ import {
 import About from './components/About.js'
 
 var data = [
-  { number: 1, image: '../assets/img/camel.jpg'},
-  { number: 2, image: '../assets/img/duck.png'},
-  { number: 3, image: '../assets/img/jigglypuff.png'},
-  { number: 4, image: '../assets/img/pikachu.png'},
-  { number: 5, image: '../assets/img/reindeer.png'},
-  { number: 6, image: '../assets/img/sloth.png'},
-  { number: 7, image: '../assets/img/windmill.png'},
-  { number: 8, image: '../assets/img/windmill-logo.jpg'},
+  { number: 1, image: Camel},
+  { number: 2, image: Duck},
+  { number: 3, image: Jigglypuff},
+  { number: 4, image: Pikachu},
+  { number: 5, image: Reindeer},
+  { number: 6, image: Sloth},
+  { number: 7, image: Windmill},
+  { number: 8, image: WindmillLogo},
   { number: 9, image: '../assets/img/camel.jpg'},
   { number: 10, image: '../assets/img/camel.jpg'}, 
   { number: 11, image: '../assets/img/camel.jpg'},
