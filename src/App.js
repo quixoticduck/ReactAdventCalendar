@@ -24,31 +24,36 @@ import {
 // this style of import has to be importing from a file with export default in it
 import About from './components/About.js'
 
+function flipDoor(doorNumber) {
+  data [doorNumber -1] ["doorOpen"] = true
+  console.log(data [doorNumber -1] ["doorOpen"]);
+}
+
 var data = [
-  { number: 1, image: Camel},
-  { number: 2, image: Duck},
-  { number: 3, image: Jigglypuff},
-  { number: 4, image: Pikachu},
-  { number: 5, image: Reindeer},
-  { number: 6, image: Sloth},
-  { number: 7, image: Windmill},
-  { number: 8, image: WindmillLogo},
-  { number: 9, image: '../assets/img/camel.jpg'},
-  { number: 10, image: '../assets/img/camel.jpg'}, 
-  { number: 11, image: '../assets/img/camel.jpg'},
-  { number: 12, image: '../assets/img/camel.jpg'},
-  { number: 13, image: '../assets/img/camel.jpg'},
-  { number: 14, image: '../assets/img/camel.jpg'},
-  { number: 15, image: '../assets/img/camel.jpg'},
-  { number: 16, image: '../assets/img/camel.jpg'},
-  { number: 17, image: '../assets/img/camel.jpg'},
-  { number: 18, image: '../assets/img/camel.jpg'},
-  { number: 19, image: '../assets/img/camel.jpg'},
-  { number: 20, image: '../assets/img/camel.jpg'},
-  { number: 21, image: '../assets/img/camel.jpg'},
-  { number: 22, image: '../assets/img/camel.jpg'},
-  { number: 23, image: "https://placekitten.com/g/101/100" },
-  { number: 24, image: "https://placekitten.com/g/100/100" }
+  { number: 1, image: Camel, doorOpen: true, flipDoor},
+  { number: 2, image: Duck, doorOpen: false, flipDoor},
+  { number: 3, image: Jigglypuff, doorOpen: false, flipDoor},
+  { number: 4, image: Pikachu, doorOpen: false, flipDoor},
+  { number: 5, image: Reindeer, doorOpen: true, flipDoor},
+  { number: 6, image: Sloth, doorOpen: true, flipDoor},
+  { number: 7, image: Windmill, doorOpen: true, flipDoor},
+  { number: 8, image: WindmillLogo, doorOpen: true, flipDoor},
+  { number: 9, image: '../assets/img/camel.jpg', doorOpen: true, flipDoor},
+  { number: 10, image: '../assets/img/camel.jpg', doorOpen: true, flipDoor}, 
+  { number: 11, image: '../assets/img/camel.jpg', doorOpen: true, flipDoor},
+  { number: 12, image: '../assets/img/camel.jpg', doorOpen: true, flipDoor},
+  { number: 13, image: '../assets/img/camel.jpg', doorOpen: true, flipDoor},
+  { number: 14, image: '../assets/img/camel.jpg', doorOpen: true, flipDoor},
+  { number: 15, image: '../assets/img/camel.jpg', doorOpen: false, flipDoor},
+  { number: 16, image: '../assets/img/camel.jpg', doorOpen: false, flipDoor},
+  { number: 17, image: '../assets/img/camel.jpg', doorOpen: false, flipDoor},
+  { number: 18, image: '../assets/img/camel.jpg', doorOpen: true, flipDoor},
+  { number: 19, image: '../assets/img/camel.jpg', doorOpen: true, flipDoor},
+  { number: 20, image: '../assets/img/camel.jpg', doorOpen: true, flipDoor},
+  { number: 21, image: '../assets/img/camel.jpg', doorOpen: true, flipDoor},
+  { number: 22, image: '../assets/img/camel.jpg', doorOpen: true, flipDoor},
+  { number: 23, image: "https://placekitten.com/g/101/100", doorOpen: true, flipDoor},
+  { number: 24, image: "https://placekitten.com/g/100/100", doorOpen: true, flipDoor}
 ]
 
 // props is an object
@@ -126,6 +131,7 @@ function Home() {
 function Contact() {
   return <h2>Contact</h2>;
 }
+
 
 
 export default function App() {

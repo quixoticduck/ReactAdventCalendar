@@ -7,11 +7,11 @@ function Door(props) {
 	// const number = props.number;
 	// const image = props.image;
 	//line below is a better way of the two lines above
-	const {number, image, itsChristmas} = props;
+	const {number, image, itsChristmas, doorOpen, flipDoor} = props;
 	// the way to set a component state in React
-	const savedDoorState = localStorage.getItem('Door'+number);
+	// const savedDoorState = localStorage.getItem('Door'+number);
 	//if the door is not open then savedDoorState gets the value undefined which is falsey but we are using strict === comparison to the string so it doesn't matter what it is as long as it isn't open
-	const [doorOpen, setDoorOpen] = React.useState(savedDoorState === 'open');
+	// const [doorOpen, setDoorOpen] = React.useState(false);
 
 	let doorStyle = { backgroundImage: "url(" + Holly + ")" };
 
@@ -24,9 +24,12 @@ function Door(props) {
 	const doorClicked = () => {
 	    //new Date is a built in method in javascript
 	    const currentDate = new Date();
+	    
 	    if (currentDate.getDate() >= number) {
-	    	setDoorOpen(true);
-	    	localStorage.setItem('Door'+number, 'open');
+	    	flipDoor(number)
+	    	console.log("clicked")
+	    	// setDoorOpen(true);
+	    	// localStorage.setItem('Door'+number, 'open');
 	    } 
 	    if (itsChristmas === true) {
 	    	alert("It's Christmas!");
