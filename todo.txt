@@ -1,0 +1,5 @@
+get rid of numbers when doors open
+fix door 25 and make fireworks happen (tutorial)
+center the close door button
+redraw holly image
+draw enough images for 25 doors
