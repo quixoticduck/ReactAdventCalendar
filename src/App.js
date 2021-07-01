@@ -12,7 +12,9 @@ import Pikachu from './img/pikachu.png';
 import Reindeer from './img/reindeer.png';
 import Sloth from './img/sloth.png';
 import Windmill from './img/windmill.png';
-import WindmillLogo from './img/windmill-logo.jpg'
+import WindmillLogo from './img/windmill-logo.jpg';
+import Holly from './img/holly.png';
+import ChristmasHolly from './img/holly-25.jpg';
 // import {
 //   //this style of import 
 //   BrowserRouter as Router,
@@ -49,7 +51,8 @@ var data = [
   { number: 21, image: Camel},
   { number: 22, image: Camel},
   { number: 23, image: "https://placekitten.com/g/101/100"},
-  { number: 24, image: "https://placekitten.com/g/100/100"}
+  { number: 24, image: "https://placekitten.com/g/100/100"},
+  { number: 25, image: "https://placekitten.com/g/500/200"}
 ]
 
 // props is an object
@@ -109,16 +112,22 @@ export default function App() {
   }, []);
 
   function flipDoor(doorNumber) {
+    const currentDate = new Date();
+    if (currentDate.getDate() >= doorNumber) {
+      // a trick to make React know the data has changed
+      const updatedDoors = [...doors];
+      updatedDoors[doorNumber -1].doorOpen = true;
+      const calendarStateWithoutImages = updatedDoors
+        .filter(door => door.doorOpen)
+        .map(door => door.number);
+      setDoors(updatedDoors);
+      localStorage.setItem("calendarState", JSON.stringify(calendarStateWithoutImages));
+      console.log(doors[doorNumber -1].doorOpen);
+      }
+    }
 
-    // a trick to make React know the data has changed
-    const updatedDoors = [...doors];
-    updatedDoors[doorNumber -1].doorOpen = true;
-    const calendarStateWithoutImages = updatedDoors
-      .filter(door => door.doorOpen)
-      .map(door => door.number);
-    setDoors(updatedDoors);
-    localStorage.setItem("calendarState", JSON.stringify(calendarStateWithoutImages));
-    console.log(doors[doorNumber -1].doorOpen);
+  function christmasFlipDoor(doorNumber) {
+    flipDoor(doorNumber);
   }
 
   function closeDoors() {
@@ -143,16 +152,16 @@ export default function App() {
       <div className="calendar-container">
         {/* each of the elements inside doorData gets assigned to the door component as a property instead of writing them all down one by one */}
         {/* adding a unique key for each because that's what React prefers */}
-        {doors.map(doorData => <Door flipDoor={flipDoor} key={doorData.number} {...doorData}/>)}
+        {doors.map(doorData => doorData.number == 25 ? null : <Door closedImage={Holly} flipDoor={flipDoor} key={doorData.number} {...doorData}/>)}
       </div>
       {/* {} are used for javascript objects  */}
       {/* but also {} are used to swap from html (JSX) mode to javascript mode when using React/JSX */}
       <div className = "last-door-wrapper">
         <div className= "last-door">
           {/* true is inside {} so that it isn't seen as a string */}
-            <Door number="25" image='../assets/img/camel.jpg' itsChristmas = {true}/>
+            <Door number="25" image='../assets/img/camel.jpg' closedImage={ChristmasHolly} flipDoor={christmasFlipDoor} />
         </div>
-        <div>
+        <div className = "close-door-wrapper">
           <button onClick={closeDoors}>Close Doors</button>
         </div>
       </div>

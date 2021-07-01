@@ -97,7 +97,7 @@ code {
   cursor: pointer;
 }
 
-.last-door-wrapper {
+.last-door-wrapper, .close-door-wrapper {
   display: grid;
   justify-content: center;
 }

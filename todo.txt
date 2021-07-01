@@ -1,5 +1,11 @@
-get rid of numbers when doors open
-fix door 25 and make fireworks happen (tutorial)
-center the close door button
+make fireworks happen on door 25 (tutorial)
+
 redraw holly image
 draw enough images for 25 doors
+
+
+done:
+doors should only open on correct dates
+get rid of numbers when doors open
+center the close door button
+fix door 25 and 
