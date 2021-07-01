@@ -9,3 +9,5 @@ doors should only open on correct dates
 get rid of numbers when doors open
 center the close door button
 fix door 25 and 
+
+doors only open on correct dates, numbers disappear when doors open, the close door button has been centered, door 25 no longer has an error and probably works but hasn't been tested as the date is the first of the month today
