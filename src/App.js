@@ -98,22 +98,32 @@ export default function App() {
     return [];
   }
 
-// data parameter is just temporarily there as a placeholder
+  // checks if the url contains /?cheatmode text and if it does it means all doors can be opened
+  // http://localhost:3000/?cheatmode
+  const cheatModeUrlParam = new URLSearchParams(window.location.search).get('cheatmode');
+  const isCheatMode = !(cheatModeUrlParam === null);
+  // const [isCheatMode, setIsCheatMode] = useState(cheatModeParamExists);
+
+  // data parameter is just temporarily there as a placeholder
   const [doors, setDoors] = useState(data);
 
 // used here to execute something the first time the page loads and not every render
   useEffect(() => {
     const calendarState = fetchData();
-    const currentDoorsOpen = doors.map(door => {
-      return {...door, doorOpen: calendarState.includes(door.number)}
-    })
+
+// using ... includes everything in the object
+    const currentDoorsOpen = doors.map(door => ({...door, doorOpen: calendarState.includes(door.number)}));
     setDoors(currentDoorsOpen);
     //it takes a second parameter telling it when to render again but we want it to run once and not when something updates so we have left it empty
   }, []);
 
   function flipDoor(doorNumber) {
     const currentDate = new Date();
-    if (currentDate.getDate() >= doorNumber) {
+
+    const dayOfMonth = currentDate.getDate();
+    // let isCheatMode = true;
+    const isOkToFlipDoor = (dayOfMonth >= doorNumber) || isCheatMode;
+    if (isOkToFlipDoor) {
       // a trick to make React know the data has changed
       const updatedDoors = [...doors];
       updatedDoors[doorNumber -1].doorOpen = true;
@@ -152,7 +162,7 @@ export default function App() {
       <div className="calendar-container">
         {/* each of the elements inside doorData gets assigned to the door component as a property instead of writing them all down one by one */}
         {/* adding a unique key for each because that's what React prefers */}
-        {doors.map(doorData => doorData.number == 25 ? null : <Door closedImage={Holly} flipDoor={flipDoor} key={doorData.number} {...doorData}/>)}
+        {doors.map(doorData => doorData.number === 25 ? null : <Door closedImage={Holly} flipDoor={flipDoor} key={doorData.number} {...doorData}/>)}
       </div>
       {/* {} are used for javascript objects  */}
       {/* but also {} are used to swap from html (JSX) mode to javascript mode when using React/JSX */}
@@ -169,44 +179,3 @@ export default function App() {
   )
 }
 
-
-
-// function OriginalApp() {
-//   var message = "Hello world"
-//   return (
-//     // anything with an uppercase first letter is a "component"
-//     <Router>
-//       {/* anything with a lowercase first letter is an "element" (an html tag) */}
-//       <div>
-//         {/* <Title text="Advent Calendar" color="purple" /> */}
-//         <nav>
-//           <ol>
-//             <li>
-//               <Link to="/">House</Link>
-//             </li>
-//             <li>
-//               <Link to="/about">About</Link>
-//             </li>
-//             <li>
-//               <Link to="/contact">Contact</Link>
-//             </li>
-//           </ol>
-//         </nav>
-// 
-//         {/* A <Switch> looks through its children <Route>s and
-//             renders the first one that matches the current URL. */}
-//         <Switch>
-//           <Route path="/about">
-//             <About />
-//           </Route>
-//           <Route path="/contact">
-//             <Contact />
-//           </Route>
-//           <Route path="/">
-//             <Home />
-//           </Route>
-//         </Switch>
-//       </div>
-//     </Router>
-//   );
-// }

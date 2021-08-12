@@ -1,4 +1,5 @@
 make fireworks happen on door 25 (tutorial)
+add test mode for when it isn't december 25th
 
 redraw holly image
 draw enough images for 25 doors

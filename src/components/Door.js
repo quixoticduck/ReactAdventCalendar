@@ -18,7 +18,7 @@ function Door(props) {
 	const [displayedNumber, setDisplayedNumber] = React.useState(number);
 	// let doorStyle = { backgroundImage: "url(" + Holly + ")" };
 	// let displayedNumber = number;
-	console.log(props);
+	//console.log(props);
 
 	// if ('Door'+number === 25) {
 	// 	doorStyle = { backgroundImage: "url('../assets/img/holly-25.png')" };
