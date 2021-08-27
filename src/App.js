@@ -106,6 +106,8 @@ export default function App() {
 
   // data parameter is just temporarily there as a placeholder
   const [doors, setDoors] = useState(data);
+  const [zoomed, setZoomed] = useState(false);
+  const [currentDoor, setCurrentDoor] = useState();
 
 // used here to execute something the first time the page loads and not every render
   useEffect(() => {
@@ -118,6 +120,10 @@ export default function App() {
   }, []);
 
   function flipDoor(doorNumber) {
+    if (doors[doorNumber -1].doorOpen === true) {
+      setCurrentDoor(doorNumber);
+      setZoomed(!zoomed);
+    }
     const currentDate = new Date();
 
     const dayOfMonth = currentDate.getDate();
@@ -138,6 +144,7 @@ export default function App() {
 
   function christmasFlipDoor(doorNumber) {
     flipDoor(doorNumber);
+    console.log("christmas flippy");
   }
 
   function closeDoors() {
@@ -148,6 +155,16 @@ export default function App() {
     setDoors(closed);
     console.log(data);
     // window.location.reload(false);
+  }
+
+  // debugger;
+
+  if (zoomed) {
+    return (
+      <div className = "zoomed-container" onClick = {()=> setZoomed(!zoomed)}>
+        <img src={doors[currentDoor-1].image} onClick = {()=> setZoomed(!zoomed)}/>
+      </div>
+    )
   }
 
   // var Doors = data.map(Door);
@@ -168,8 +185,8 @@ export default function App() {
       {/* but also {} are used to swap from html (JSX) mode to javascript mode when using React/JSX */}
       <div className = "last-door-wrapper">
         <div className= "last-door">
-          {/* true is inside {} so that it isn't seen as a string */}
-            <Door number="25" image='../assets/img/camel.jpg' closedImage={ChristmasHolly} flipDoor={christmasFlipDoor} />
+          {/* true is inside {} so that it isn't seen as a string */}            
+            <Door number="25" image="https://placekitten.com/g/101/100" closedImage={ChristmasHolly} flipDoor={christmasFlipDoor} />
         </div>
         <div className = "close-door-wrapper">
           <button onClick={closeDoors}>Close Doors</button>

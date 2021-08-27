@@ -1,5 +1,8 @@
 make fireworks happen on door 25 (tutorial)
 add test mode for when it isn't december 25th
+enlarge open image thumbnails on click?
+change enlarged background from red
+make them unzoom when you click the background (make container as big as screen) and have css change from pointer to hand
 
 redraw holly image
 draw enough images for 25 doors
