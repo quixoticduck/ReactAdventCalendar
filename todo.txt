@@ -1,17 +1,20 @@
-make fireworks happen on door 25 (tutorial)
-add test mode for when it isn't december 25th
-enlarge open image thumbnails on click?
-change enlarged background from red
-make them unzoom when you click the background (make container as big as screen) and have css change from pointer to hand
+coding:
+    make fireworks happen on door 25 (tutorial) or reindeer
+    make them unzoom when you click the background (make container as big as screen) and have css change from pointer to hand
+    make it so when zoomed in the back button will go back to main page
 
-redraw holly image
-draw enough images for 25 doors
+art:
+    redraw holly image
+    draw enough images for 25 doors
 
 
 done:
+hover over openable doors have a box shadow/glow
+add test mode for when it isn't december 25th
 doors should only open on correct dates
 get rid of numbers when doors open
 center the close door button
 fix door 25 and 
-
+enlarge open image thumbnails on click?
+change enlarged background from red
 doors only open on correct dates, numbers disappear when doors open, the close door button has been centered, door 25 no longer has an error and probably works but hasn't been tested as the date is the first of the month today

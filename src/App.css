@@ -1,3 +1,8 @@
+/* reset some things to override the defaults */
+body, html, #root  {
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -59,12 +64,6 @@ code {
   color: red;
 }
 
-/*.wrapper .last-door .Door{
-  color: red;
-  flex-direction: column;
-  align-self: center;
-}*/
-
 .titles {
   display: flex;
   align-items: center;
@@ -81,20 +80,21 @@ code {
   grid-template-columns: repeat(6, 1fr);
 }
 
-.Door {
+.door {
   width: 200px;
   height: 200px;
   margin: 20px;
   border: 10px solid white;
   font-size: 110px;
   color: white;
-  text-shadow: 2px 2px #191A25;
-  background-color: #191A25;
+  text-shadow: 2px 2px #1e1e1e;
+  background-color: #1e1e1e;
   background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition:all 150ms;
 }
 
 .last-door-wrapper, .close-door-wrapper {
@@ -102,7 +102,7 @@ code {
   justify-content: center;
 }
 
-.last-door .Door {
+.last-door .door {
   width: 500px;
   background-size: stretch;
 }
@@ -117,13 +117,22 @@ button {
   background-color: #191A25;
 }
 
+
+
 .zoomed-container  {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #191A25;
   cursor: pointer;
   height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(20,20,20, .75);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition:all 150ms;
 }
 
 .zoomed-container img {
@@ -131,5 +140,33 @@ button {
   max-width: 45%;
   max-height: 45%;
   border: 10px solid white;
-  color: white;
+  background-color: #1e1e1e;
+  transition:all 150ms;
+}
+
+.zoomed-container.closed {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.zoomed-container.closed img {
+  transform: scale(0.5);
+  background-color: #1e1e1e;
+}
+
+.door.locked {
+  filter: saturate(10%);
+}
+
+.door.unlocked {
+  box-shadow: 0px 0px 10px 2px rgb(254 248 217 / 0.75);
+}
+
+.door.unlocked:hover {
+  box-shadow: 0px 0px 15px 3px rgb(254 248 217 / 0.75);
+  transform: scale(1.0075);
+}
+
+.door.unlocked:active {
+  transform: scale(0.9925);
 }

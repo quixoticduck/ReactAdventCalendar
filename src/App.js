@@ -98,11 +98,7 @@ export default function App() {
     return [];
   }
 
-  // checks if the url contains /?cheatmode text and if it does it means all doors can be opened
-  // http://localhost:3000/?cheatmode
-  const cheatModeUrlParam = new URLSearchParams(window.location.search).get('cheatmode');
-  const isCheatMode = !(cheatModeUrlParam === null);
-  // const [isCheatMode, setIsCheatMode] = useState(cheatModeParamExists);
+
 
   // data parameter is just temporarily there as a placeholder
   const [doors, setDoors] = useState(data);
@@ -119,18 +115,28 @@ export default function App() {
     //it takes a second parameter telling it when to render again but we want it to run once and not when something updates so we have left it empty
   }, []);
 
-  function flipDoor(doorNumber) {
-    if (doors[doorNumber -1].doorOpen === true) {
-      setCurrentDoor(doorNumber);
-      setZoomed(!zoomed);
-    }
+  function checkIfLocked(doorNumber) {
+  // checks if the url contains /?cheatmode text and if it does it means all doors can be opened
+  // http://localhost:3000/?cheatmode
+  const cheatModeUrlParam = new URLSearchParams(window.location.search).get('cheatmode');
+  const isCheatMode = !(cheatModeUrlParam === null);
     const currentDate = new Date();
 
     const dayOfMonth = currentDate.getDate();
     // let isCheatMode = true;
-    const isOkToFlipDoor = (dayOfMonth >= doorNumber) || isCheatMode;
-    if (isOkToFlipDoor) {
+    return (dayOfMonth < doorNumber) && !isCheatMode;
+  }
+
+  function flipDoor(doorNumber) {
+    console.log(doorNumber, (doors[doorNumber -1].doorOpen === true));
+    if (doors[doorNumber -1].doorOpen === true) {
+      setCurrentDoor(doorNumber);
+      setZoomed(!zoomed);
+    }
+    
+    if (!checkIfLocked(doorNumber)) {
       // a trick to make React know the data has changed
+      //... means to take everything in the referenced array and spread it out (spread operator) to list out everything in the array
       const updatedDoors = [...doors];
       updatedDoors[doorNumber -1].doorOpen = true;
       const calendarStateWithoutImages = updatedDoors
@@ -159,13 +165,11 @@ export default function App() {
 
   // debugger;
 
-  if (zoomed) {
-    return (
-      <div className = "zoomed-container" onClick = {()=> setZoomed(!zoomed)}>
-        <img src={doors[currentDoor-1].image} onClick = {()=> setZoomed(!zoomed)}/>
-      </div>
-    )
-  }
+
+
+  const smallDoors = [...doors];
+  //removes the last door from the array and stores it in another variable named christmasDoor, so now smallDoors is only doors 1-24
+  const christmasDoor = smallDoors.pop();
 
   // var Doors = data.map(Door);
   return (
@@ -179,19 +183,25 @@ export default function App() {
       <div className="calendar-container">
         {/* each of the elements inside doorData gets assigned to the door component as a property instead of writing them all down one by one */}
         {/* adding a unique key for each because that's what React prefers */}
-        {doors.map(doorData => doorData.number === 25 ? null : <Door closedImage={Holly} flipDoor={flipDoor} key={doorData.number} {...doorData}/>)}
+        {smallDoors.map(doorData => <Door closedImage={Holly} flipDoor={flipDoor} key={doorData.number} isLocked={checkIfLocked(doorData.number)} {...doorData}/>)}
       </div>
       {/* {} are used for javascript objects  */}
       {/* but also {} are used to swap from html (JSX) mode to javascript mode when using React/JSX */}
       <div className = "last-door-wrapper">
         <div className= "last-door">
           {/* true is inside {} so that it isn't seen as a string */}            
-            <Door number="25" image="https://placekitten.com/g/101/100" closedImage={ChristmasHolly} flipDoor={christmasFlipDoor} />
+            <Door number={25} image={christmasDoor.image} closedImage={ChristmasHolly} flipDoor={christmasFlipDoor} isLocked={checkIfLocked(christmasDoor.number)} doorOpen={christmasDoor.doorOpen} />
         </div>
         <div className = "close-door-wrapper">
           <button onClick={closeDoors}>Close Doors</button>
         </div>
       </div>
+        {/* ternary operator - if zoomed is true then open, if not then closed  */}
+      <div className={`zoomed-container ${zoomed ? 'open' : 'closed'}`} onClick={()=> setZoomed(!zoomed)}>
+        {/* optionable chaining - the question mark before something that may not exist so it won't break if it doesn't */}
+        <img src={doors[currentDoor-1]?.image} onClick={()=> setZoomed(!zoomed)}/>
+      </div>
+
   </div>
   )
 }
