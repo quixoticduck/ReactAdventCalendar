@@ -15,6 +15,7 @@ import Windmill from './img/windmill.png';
 import WindmillLogo from './img/windmill-logo.jpg';
 import Holly from './img/holly.png';
 import ChristmasHolly from './img/holly-25.jpg';
+import ChristmasReindeer from './img/reindeer-25.png';
 // import {
 //   //this style of import 
 //   BrowserRouter as Router,
@@ -52,7 +53,7 @@ var data = [
   { number: 22, image: Camel},
   { number: 23, image: "https://placekitten.com/g/101/100"},
   { number: 24, image: "https://placekitten.com/g/100/100"},
-  { number: 25, image: "https://placekitten.com/g/500/200"}
+  { number: 25, image: ChristmasReindeer},
 ]
 
 // props is an object
@@ -129,7 +130,7 @@ export default function App() {
 
   function flipDoor(doorNumber) {
     console.log(doorNumber, (doors[doorNumber -1].doorOpen === true));
-    if (doors[doorNumber -1].doorOpen === true) {
+    if (doors[doorNumber -1].doorOpen === true || doorNumber === 25) {
       setCurrentDoor(doorNumber);
       setZoomed(!zoomed);
     }
@@ -170,12 +171,13 @@ export default function App() {
   const smallDoors = [...doors];
   //removes the last door from the array and stores it in another variable named christmasDoor, so now smallDoors is only doors 1-24
   const christmasDoor = smallDoors.pop();
+  const isChristmasDoor = christmasDoor.number === currentDoor;
 
   // var Doors = data.map(Door);
   return (
     <div className="wrapper">
       <span className= "titles">
-        <Title text="Advent Calendar " color="white" />
+        <Title text="Clara's Advent Calendar " color="white" />
         <span className = "subheading">
           <Subheading text="Countdown to Christmas!" color="white" />
         </span>
@@ -197,9 +199,16 @@ export default function App() {
         </div>
       </div>
         {/* ternary operator - if zoomed is true then open, if not then closed  */}
-      <div className={`zoomed-container ${zoomed ? 'open' : 'closed'}`} onClick={()=> setZoomed(!zoomed)}>
+      <div className={`zoomed-container ${zoomed && !isChristmasDoor ? 'open' : 'closed'}`} onClick={()=> setZoomed(!zoomed)}>
         {/* optionable chaining - the question mark before something that may not exist so it won't break if it doesn't */}
         <img src={doors[currentDoor-1]?.image} onClick={()=> setZoomed(!zoomed)}/>
+      </div>
+
+      <div className={`zoomed-container ${zoomed && isChristmasDoor ? 'open' : 'closed'}`} onClick={()=> setZoomed(!zoomed)}>
+        <div className="reindeer">
+          <iframe height="700" scrolling="no" title="baublenose the flying reindeer WIP2" src="https://codepen.io/quixoticduck/embed/VwMWydX?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+          </iframe>
+        </div>
       </div>
 
   </div>

@@ -4,6 +4,8 @@ coding:
     make it so when zoomed in the back button will go back to main page
     fix number so it doesn't change size when hovered over
 
+	EXPORT
+
 art:
     redraw holly image
     draw enough images for 25 doors
