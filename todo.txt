@@ -3,6 +3,7 @@ coding:
     when images are zoomed in, should the cursor change?
     make it so when zoomed in the back button will go back to main page
     fix number so it doesn't change size when hovered over
+    
 
 	EXPORT
 
